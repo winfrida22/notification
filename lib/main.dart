@@ -36,10 +36,10 @@ import 'package:notifications/home.dart';
   );
 
   //tap listiner on notification
-  AwesomeNotifications().actionStream.listen((ReceivedNotification receivedNotification){
-     print(receivedNotification.payload!['name']);
-     //output from first notification:  FlutterCampus
-  });
+  // AwesomeNotifications().actionStream.listen((ReceivedNotification receivedNotification){
+  //    print(receivedNotification.payload!['name']);
+  //    //output from first notification:  FlutterCampus
+  // });
 
   runApp(const MyApp());
 }
