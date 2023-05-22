@@ -2,6 +2,7 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sms/flutter_sms.dart';
 import 'package:notifications/call.dart';
 
 
@@ -12,6 +13,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  String message = "This is a test message!";
+  List<String> recipients = ["1234567890", "5556787676"];
+
+  /// TODO SMS Function
+  void _sendSMS(String message, List<String> recipents) async {
+    String _result = await sendSMS(message: message, recipients: recipents)
+        .catchError((onError) {
+      print(onError);
+    });
+    print(_result);
+  }
   
 
   @override
@@ -152,6 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     InkWell(
                       onTap: () {
                         // _openGallery();
+                        _sendSMS(message, recipients);
                       },
                       child: const Card(
                         child: Padding(
