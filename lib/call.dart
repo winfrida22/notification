@@ -38,6 +38,7 @@ class _CallScreenState extends State<CallScreen> {
               child: Form(
                 key: _formKey,
                 child: TextFormField(
+                  keyboardType: TextInputType.number,
                   style: TextStyle(fontSize: 17.0, color: Colors.black),
                   decoration: InputDecoration(
                       prefixIcon: Icon(Icons.phone), labelText: "Phone Number"),
