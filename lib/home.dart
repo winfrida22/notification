@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sms/flutter_sms.dart';
 import 'package:notifications/call.dart';
+import 'package:notifications/notifications.dart';
 
 
 
@@ -51,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context, MaterialPageRoute(builder: (context) => CallScreen()));
                       },
-                      child: const Card(
+                      child:  Card(
                         child: Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: 20.0, vertical: 20),
@@ -81,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         // _openGallery();
                         _sendSMS(message, recipients);
                       },
-                      child: const Card(
+                      child: Card(
                         child: Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: 20.0, vertical: 20),
@@ -124,9 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => CallScreen()));
+                              builder: (context) => NotificationsScreen()));
                     },
-                    child: const Card(
+                    child: Card(
                       child: Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 20),
@@ -156,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       // _openGallery();
                       // _sendSMS(message, recipients);
                     },
-                    child: const Card(
+                    child:Card(
                       child: Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 20),
