@@ -9,7 +9,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderStateMixin{
   String message = "This is a test message!";
   List<String> recipients = ["+255719401594", "+255693331836"];
 
@@ -20,6 +20,40 @@ class _HomeScreenState extends State<HomeScreen> {
       print(onError);
     });
     print(_result);
+  }
+
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 10),
+    )..repeat(reverse: true);
+    // _animation =
+    //     Tween<double>(begin: 0.0, end: 100.0).animate(_animationController);
+    _animation = TweenSequence<double>([
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 0, end: -10),
+        weight: 0.5,
+      ),
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: -10, end: 10),
+        weight: 1.0,
+      ),
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 10, end: 0),
+        weight: 0.5,
+      ),
+    ]).animate(_animationController);
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -35,18 +69,40 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(
                   height: 70,
                 ),
-                Container(
-                  height: 200,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/home.jpg"),
-                    ),
-                  ),
+                // AnimatedContainer(
+                //   duration: const Duration(milliseconds: 500),
+                //   transform: Matrix4.translationValues(0, _animation.value, 0),
+                //   child: Image.asset(
+                //     "assets/icons/bell.png",
+                //     height: 100,
+                //     width: 100,
+                //   ),
+                // ),
+                 AnimatedBuilder(
+                  animation: _animationController,
+                  builder: (BuildContext context, Widget? child) {
+                    return Transform.translate(
+                      offset: Offset( _animation.value,0),
+                      child: Image.asset(
+                        "assets/icons/bell.png",
+                        height: 100,
+                        width: 100,
+                      ),
+                    );
+                  },
                 ),
+                // Container(
+                //   height: 200,
+                //   width: double.infinity,
+                //   decoration: BoxDecoration(
+                //     image: DecorationImage(
+                //       image: AssetImage("assets/images/home.jpg"),
+                //     ),
+                //   ),
+                // ),
                 const SizedBox(
-                      height: 20,
-                    ),
+                  height: 50,
+                ),
                 Row(
                   // Number of columns in the grid
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,10 +122,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
-                                Icons.call_outlined,
-                                size: 50,
-                              ), // Replace 'icon_name_3' with the desired icon
+                              Image.asset("assets/icons/call.png"),
+                              // Icon(
+                              //   Icons.call_outlined,
+                              //   size: 50,
+                              // ), // Replace 'icon_name_3' with the desired icon
                               SizedBox(height: 8),
                               Text(
                                 'Call',
@@ -96,10 +153,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
-                                Icons.message_outlined,
-                                size: 50,
-                              ), // Replace 'icon_name_3' with the desired icon
+                              Image.asset("assets/icons/notification.png"),
+
+                              // Icon(
+                              //   Icons.message_outlined,
+                              //   size: 50,
+                              // ), // Replace 'icon_name_3' with the desired icon
                               SizedBox(height: 8),
                               Text(
                                 'Message',
@@ -141,10 +200,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
-                                Icons.notifications_outlined,
-                                size: 50,
-                              ), // Replace 'icon_name_3' with the desired icon
+                              Image.asset("assets/icons/bell.png"),
+
+                              // Icon(
+                              //   Icons.notifications_outlined,
+                              //   size: 50,
+                              // ), // Replace 'icon_name_3' with the desired icon
                               SizedBox(height: 8),
                               Text(
                                 'Notifications',

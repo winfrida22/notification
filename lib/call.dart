@@ -46,10 +46,10 @@ class _CallScreenState extends State<CallScreen> {
                   validator: (val) {
                     return RegExp(
                       // "^(?:[+0]9)?[0-9]{10,12}",
-                      "^[0-9]{4} [0-9]{7}",
+                      "^[0-9]{4}[0-9]{6}",
                     ).hasMatch(val!)
                         ? null
-                        : 'Format XXXX XXXXXXX';
+                        : 'Format XXXX XXXXXX';
                   },
                 ),
               ),
