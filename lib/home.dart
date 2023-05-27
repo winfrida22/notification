@@ -9,7 +9,8 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderStateMixin{
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
   String message = "This is a test message!";
   List<String> recipients = ["+255719401594", "+255693331836"];
 
@@ -78,11 +79,11 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                 //     width: 100,
                 //   ),
                 // ),
-                 AnimatedBuilder(
+                AnimatedBuilder(
                   animation: _animationController,
                   builder: (BuildContext context, Widget? child) {
                     return Transform.translate(
-                      offset: Offset( _animation.value,0),
+                      offset: Offset(_animation.value, 0),
                       child: Image.asset(
                         "assets/icons/bell.png",
                         height: 100,
